@@ -1,18 +1,21 @@
 import './App.css';
-import ContactForm from './components/ContactForm';
-import Filter from './components/Filter';
-import ContactList from './components/ContactList';
-import { FormContainer, ContactsTitle } from './App.styled';
+import Register from 'pages/Register';
+import Login from 'pages/Login';
+import AppBar from 'AppBar';
+import HomePage from 'pages/HomePage';
+import Contacts from 'pages/Contacts';
+import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
     <>
-      <FormContainer>
-        <ContactForm />
-        <ContactsTitle>Contacts</ContactsTitle>
-        <Filter />
-        <ContactList />
-      </FormContainer>
+      <AppBar />
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/" element={<HomePage />} />
+      </Routes>
     </>
   );
 };
