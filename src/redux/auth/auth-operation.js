@@ -18,7 +18,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    return error.massage;
+    return error.message;
   }
 });
 
@@ -28,7 +28,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    return error.massage;
+    return error.message;
   }
 });
 
@@ -37,8 +37,27 @@ const logOut = createAsyncThunk('auth/logout', async () => {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    return error.massage;
+    return error.message;
   }
 });
 
-export const authOperations = { register, logIn, logOut };
+const fetchCurrentUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.get('/user/current');
+      return data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+export const authOperations = { register, logIn, logOut, fetchCurrentUser };
