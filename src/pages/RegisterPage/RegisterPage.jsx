@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   Link,
@@ -6,18 +7,20 @@ import {
   Typography,
   Grid,
 } from '@mui/material';
-import { Box } from '@mui/system';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth/auth-operation';
+import { authOperations } from '../../redux/auth/auth-operation';
 
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
+      case 'name':
+        return setName(value);
       case 'email':
         return setEmail(value);
       case 'password':
@@ -29,7 +32,8 @@ const Login = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
+    dispatch(authOperations.register({ name, email, password }));
+    setName('');
     setEmail('');
     setPassword('');
   };
@@ -39,11 +43,24 @@ const Login = () => {
       <Grid container justifyContent="center">
         <Grid item>
           <Typography component="h1" variant="h5">
-            Log In
+            Registration
           </Typography>
         </Grid>
       </Grid>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        <TextField
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          margin="normal"
+          required
+          fullWidth
+          defaultValue="Normal"
+        />
         <TextField
           id="outlined-basic"
           label="Email"
@@ -76,12 +93,12 @@ const Login = () => {
           fullWidth
           sx={{ mt: 3, mb: 2 }}
         >
-          Log in
+          Register
         </Button>
         <Grid container justifyContent="center">
           <Grid item>
-            <Link href="/register" variant="body2" underline="hover">
-              Don't have an account? Register
+            <Link href="/login" variant="body2" underline="hover">
+              Already have an account? Sign in
             </Link>
           </Grid>
         </Grid>
@@ -90,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

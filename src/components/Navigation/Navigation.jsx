@@ -1,9 +1,10 @@
-import { Button, Container, Grid, Toolbar } from '@mui/material';
+import { Button, Container, Grid, Link, Toolbar } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (
     <Container>
       <Toolbar disableGutters>
@@ -15,12 +16,16 @@ const Navigation = () => {
           spacing={3}
         >
           <Grid item xs={6}>
-            <Button variant="text" startIcon={<HomeIcon />}>
-              <NavLink to="/"></NavLink>
-            </Button>
-            <Button variant="text">
-              <NavLink to="/contacts">Contacts</NavLink>
-            </Button>
+            <Link href="/" color="inherit" underline="hover">
+              <Button variant="text" startIcon={<HomeIcon />}>
+                Home
+              </Button>
+            </Link>
+            {isLoggedIn && (
+              <Link href="/contacts" color="inherit" underline="hover">
+                <Button variant="text">Contacts</Button>
+              </Link>
+            )}
           </Grid>
         </Grid>
       </Toolbar>

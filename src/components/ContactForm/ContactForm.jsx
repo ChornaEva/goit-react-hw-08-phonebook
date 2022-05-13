@@ -68,11 +68,10 @@ const ContactForm = () => {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
               value={name}
-              placeholder=""
+              placeholder="Name"
               onChange={handleInputChange}
               id={nameInputId}
             />
-            Name
           </PhonebookLabel>
           <PhonebookLabel htmlFor={numberInputId}>
             <PhonebookInput
@@ -82,11 +81,10 @@ const ContactForm = () => {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
               value={number}
-              placeholder=""
+              placeholder="Number"
               onChange={handleInputChange}
               id={numberInputId}
             />
-            Number
           </PhonebookLabel>
           <AddButton type="submit">Add contact</AddButton>
         </PhonebookInputWrapper>

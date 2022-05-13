@@ -13,8 +13,12 @@ const Filter = () => {
   };
   return (
     <FilterLabel>
-      <FilterInput name="filter" type="text" onChange={onChange}></FilterInput>
-      Find contacts by name
+      <FilterInput
+        name="filter"
+        type="text"
+        placeholder="Find contacts by name"
+        onChange={onChange}
+      ></FilterInput>
     </FilterLabel>
   );
 };

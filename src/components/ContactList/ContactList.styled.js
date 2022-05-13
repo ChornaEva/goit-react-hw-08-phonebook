@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const UsersContactList = styled.ul`
   justify-content: center;
@@ -14,7 +14,7 @@ export const ContactListItem = styled.li`
   margin-bottom: 10px;
   margin: 10px;
   border-radius: 5px;
-  border-left: 10px solid #2ea8ee;
+  border-left: 10px solid #1976d2;
   box-shadow: 2px -2px 5px 0 rgba(0, 0, 0, 0.1),
     -2px -2px 5px 0 rgba(0, 0, 0, 0.1), 2px 2px 5px 0 rgba(0, 0, 0, 0.1),
     -2px 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -46,8 +46,12 @@ export const ContactListButton = styled.button`
   width: 60px;
   height: 20px;
   text-transform: capitalize;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  border: none;
+  outline: none;
   &:hover {
-    background-color: #dd0909;
+    background-color: #1976d2;
     color: white;
   }
 `;

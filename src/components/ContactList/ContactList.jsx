@@ -27,7 +27,7 @@ const ContactList = () => {
   );
   return (
     <div>
-      {isFetching && <TailSpin color="#00BFFF" />}
+      {isFetching && <TailSpin color="#1976d2" />}
       <UsersContactList>
         {filteredContacts?.map(contact => (
           <ContactListItem key={contact.id}>

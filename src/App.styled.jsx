@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
+export const AppContainer = styled.div`
+  margin: 0 auto;
+  width: 1200px;
+  max-width: 1200px;
+`;
+
 export const FormContainer = styled.div`
-  margin: 50px 50px;
+  margin: 50px auto;
   max-width: 500px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 15px 0 rgba(158, 154, 154, 0.4);
   border-radius: 8px;
-  /* background-image: url('https://zastavok.net/main/raznoe/162365878198.jpg'); */
 `;
 
 export const ContactsTitle = styled.h2`
