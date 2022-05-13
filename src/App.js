@@ -1,13 +1,16 @@
 import './App.css';
-import Register from 'pages/Register';
-import Login from 'pages/Login';
-import AppBar from 'AppBar';
-import HomePage from 'pages/HomePage';
-import Contacts from 'pages/Contacts';
-import { Routes, Route } from 'react-router-dom';
+import AppBar from 'components/AppBar/AppBar';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth/auth-operation';
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import PrivateRoute from 'routes/PrivateRoute';
+import PublicRoute from 'routes/PublicRoute';
+
+const ContactsPage = lazy(() => import('./pages/ContactsPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,12 +22,36 @@ const App = () => {
   return (
     <>
       <AppBar />
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/" element={<HomePage />} />
-      </Routes>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Routes>
+          <Route
+            path="/register"
+            element={
+              <PublicRoute restricted>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute redirectPath="/contacts" restricted>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectPath="/login">
+                <ContactsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
