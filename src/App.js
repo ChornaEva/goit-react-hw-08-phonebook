@@ -6,6 +6,7 @@ import { authOperations } from 'redux/auth/auth-operation';
 import { lazy, Suspense, useEffect } from 'react';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
+import AppUserBar from 'components/AppBar/AppBar';
 
 const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -21,7 +22,7 @@ const App = () => {
 
   return (
     <>
-      <AppBar />
+      <AppUserBar />
       <Suspense fallback={<p>Loading...</p>}>
         <Routes>
           <Route

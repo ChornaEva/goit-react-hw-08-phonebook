@@ -7,10 +7,10 @@ import authSelectors from 'redux/auth/auth-selectors';
 const AppBar = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
-    <header>
+    <AppBar position="static">
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </header>
+    </AppBar>
   );
 };
 

@@ -1,3 +1,12 @@
+import {
+  Button,
+  Container,
+  Link,
+  TextField,
+  Typography,
+  Grid,
+} from '@mui/material';
+import { Box } from '@mui/system';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth/auth-operation';
@@ -26,30 +35,58 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="text"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Log in</button>
-      </form>
-    </div>
+    <Container maxWidth="xs">
+      <Grid container justifyContent="center">
+        <Grid item>
+          <Typography component="h1" variant="h5">
+            Log In
+          </Typography>
+        </Grid>
+      </Grid>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          type="text"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          margin="normal"
+          required
+          fullWidth
+          defaultValue="Normal"
+        />
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="text"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          margin="normal"
+          required
+          fullWidth
+          defaultValue="Normal"
+        />
+        <Button
+          variant="outlined"
+          type="submit"
+          fullWidth
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Log in
+        </Button>
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Link href="/register" variant="body2" underline="hover">
+              Don't have an account? Register
+            </Link>
+          </Grid>
+        </Grid>
+      </Box>
+    </Container>
   );
 };
 
